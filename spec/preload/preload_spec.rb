@@ -16,14 +16,14 @@ describe 'preloading the controller instance variable' do
     let(:params) { { id: 1 } }
 
     it 'sets the "alias" ivar on the controller' do
-      controller.preload(:alias)
+      controller.preload :alias, {}
       expect(controller.instance_variable_get("@alias")).to be(:test)
     end
 
-    it 'sends the name "test" to Loadable even if its not specified; inferred from the controller class' do
+    it 'sends the name "test" to the Inference even if its not specified; inferred from the controller class' do
       expect(Inferences).to receive(:new).with('test', controller).and_call_original
-      controller.preload nil
-      expect(controller.instance_variable_get("@test")).to be(:test)
+      controller.preload nil, {}
+      expect(controller.instance_variable_get('@test')).to be :test
     end
   end
 
@@ -31,7 +31,7 @@ describe 'preloading the controller instance variable' do
     let(:params) { Hash.new }
 
     it 'sets the "tests" ivar on the controller' do
-      controller.preload(:test)
+      controller.preload :test, {}
       expect(controller.instance_variable_get("@tests")).to be(:test)
     end
   end
