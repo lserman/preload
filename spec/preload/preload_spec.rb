@@ -21,7 +21,7 @@ describe 'preloading the controller instance variable' do
     end
 
     it 'sends the name "test" to the Inference even if its not specified; inferred from the controller class' do
-      expect(Inferences).to receive(:new).with('test', controller).and_call_original
+      expect(Inferences).to receive(:new).with('test', params).and_call_original
       controller.preload nil, {}
       expect(controller.instance_variable_get('@test')).to be :test
     end

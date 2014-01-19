@@ -1,8 +1,8 @@
 class Inferences
 
-  def initialize(name, controller)
+  def initialize(name, params)
     @name = name.to_s
-    @controller = controller
+    @params = params
   end
 
   def model
@@ -18,7 +18,7 @@ class Inferences
   end
 
   def singular?
-    @controller.params.include? :id
+    @params.include? :id
   end
 
 end

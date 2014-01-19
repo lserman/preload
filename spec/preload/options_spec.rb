@@ -3,6 +3,7 @@ describe 'options passed into #preload' do
   class TestsController
     include Preload
     def controller_name; 'tests' end
+    def self.helper_method(method); nil; end
   end
 
   let(:controller) { TestsController.new }
@@ -20,6 +21,18 @@ describe 'options passed into #preload' do
       controller.preload then: :test!
       expect(controller.instance_variable_get("@test")).to be(:test)
     end
+
+    specify ':aliases => []' do
+      controller.preload aliases: [:plugin, :resource]
+      expect(controller.instance_variable_get("@test")).to be(:test)
+      expect(controller.plugin).to be(:test)
+      expect(controller.resource).to be(:test)
+    end
+
+  end
+
+  context 'collection resource' do
+
   end
 
 end

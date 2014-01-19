@@ -1,7 +1,7 @@
 describe 'loading the inferred resource from the database' do
 
   let(:controller) { double('controller', params: params) }
-  let(:inferences) { Inferences.new(:test, controller) }
+  let(:inferences) { Inferences.new(:test, params) }
   let(:loader)     { Loader.new(inferences, controller) }
 
   class Test
