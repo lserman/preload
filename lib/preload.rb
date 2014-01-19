@@ -14,6 +14,7 @@ module Preload
 
   included do
     attr_accessor :inferences
+    helper_method :model
   end
 
   def preload(*args, &block)
@@ -24,8 +25,12 @@ module Preload
     self._resource  = Loader.new(inferences, self).resolve(&block)
 
     options.each do |k, v|
-      Options.fetch(k, v, self).call _resource
+      Options.fetch(k, v, self).(_resource)
     end
+  end
+
+  def model
+    @model ||= inferences.model
   end
 
   def _resource=(resource)
