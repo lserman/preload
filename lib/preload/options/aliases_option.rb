@@ -1,7 +1,7 @@
 module Preload
   class AliasesOption < Option
 
-    def call(resource)
+    def call
       aliases.each do |_alias|
         define_alias(_alias, resource)
         make_helper_method(_alias)
@@ -12,7 +12,7 @@ module Preload
 
       def define_alias(_alias, resource)
         controller.class.send :define_method, _alias do
-          resource
+          _resource
         end
       end
 

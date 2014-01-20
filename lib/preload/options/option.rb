@@ -8,5 +8,11 @@ module Preload
       @controller = controller
     end
 
+    protected
+
+      def resource
+        controller._resource
+      end
+
   end
 end

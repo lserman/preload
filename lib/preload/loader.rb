@@ -8,7 +8,9 @@ class Loader
   end
 
   def resolve(&block)
-    if inferences.singular?
+    if inferences.action.new? || inferences.action.create?
+      inferences.model.new
+    elsif inferences.singular?
       find(controller.params[:id], &block)
     else
       collection

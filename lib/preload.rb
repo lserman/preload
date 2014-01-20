@@ -25,7 +25,7 @@ module Preload
     self._resource  = Loader.new(inferences, self).resolve(&block)
 
     options.each do |k, v|
-      Options.fetch(k, v, self).(_resource)
+      Options.fetch(k, v, self).()
     end
   end
 
@@ -38,12 +38,14 @@ module Preload
   end
 
   def _resource
-    @resource ||= instance_variable_get "@#{inferences.getter}"
+    instance_variable_get "@#{inferences.getter}"
   end
 
   module ClassMethods
     def preload(*args, &block)
-      before_action { |controller| controller.preload *args, &block }
+      before_action do |controller|
+        controller.preload *args, &block
+      end
     end
   end
 

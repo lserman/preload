@@ -1,6 +1,5 @@
 describe 'making inferences about the resource before it is loaded' do
 
-  # let(:controller) { double('controller', params: params) }
   let(:inferences)   { Inferences.new(:test, params) }
 
   class Test; end

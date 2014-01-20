@@ -17,8 +17,12 @@ class Inferences
     end
   end
 
+  def action
+    @params[:action].inquiry
+  end
+
   def singular?
-    @params.include? :id
+    action.new? || action.create? || @params.include?(:id)
   end
 
 end

@@ -1,7 +1,7 @@
 module Preload
   class ThenOption < Option
 
-    def call(resource)
+    def call
       controller.send callback, resource
     end
 
