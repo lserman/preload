@@ -25,7 +25,7 @@ module Preload
     self._resource  = Loader.new(inferences, self).resolve(&block)
 
     options.each do |k, v|
-      Options.fetch(k, v, self).()
+      Options.fetch(k, v, self).call
     end
   end
 
