@@ -10,7 +10,7 @@ class Loader
   def resolve(&block)
     if inferences.action.new? || inferences.action.create?
       inferences.model.new
-    elsif inferences.singular?
+    elsif inferences.singular? || block.present?
       find(controller.params[:id], &block)
     else
       collection
