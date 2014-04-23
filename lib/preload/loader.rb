@@ -21,7 +21,7 @@ class Loader
 
     def find(id, &block)
       if block
-        yield
+        yield(controller)
       else
         inferences.model.find(id)
       end
